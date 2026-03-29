@@ -1,0 +1,57 @@
+# -------------------------------------------------------
+# Security Headers
+# -------------------------------------------------------
+
+# Force HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Prevent clickjacking (stops your site being embedded in iframes elsewhere)
+Header always set X-Frame-Options "SAMEORIGIN"
+
+# Prevent MIME-type sniffing
+Header always set X-Content-Type-Options "nosniff"
+
+# Enable XSS protection in older browsers
+Header always set X-XSS-Protection "1; mode=block"
+
+# Referrer policy
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+# Permissions policy (disable unnecessary browser features)
+Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+
+# Content Security Policy
+# Allows: your own files, Google Fonts, Google Analytics, Google Maps
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; frame-src https://www.google.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com;"
+
+# HSTS — tells browsers to always use HTTPS for 1 year
+# ONLY enable this AFTER you have verified HTTPS is working correctly
+# Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+# -------------------------------------------------------
+# Cache Control (performance)
+# -------------------------------------------------------
+<FilesMatch "\.(css|js)$">
+  Header set Cache-Control "max-age=604800, public"
+</FilesMatch>
+<FilesMatch "\.(jpg|jpeg|png|gif|ico|svg|webp)$">
+  Header set Cache-Control "max-age=2592000, public"
+</FilesMatch>
+<FilesMatch "\.html$">
+  Header set Cache-Control "max-age=3600, public"
+</FilesMatch>
+
+# -------------------------------------------------------
+# Disable directory listing
+# -------------------------------------------------------
+Options -Indexes
+
+# -------------------------------------------------------
+# Protect sensitive files
+# -------------------------------------------------------
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql|bak)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
