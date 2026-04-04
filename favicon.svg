@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="50" fill="#1a3a2a"/>
+
+  <!-- Leaf shape -->
+  <path d="M50 15 C50 15, 75 30, 75 55 C75 72, 63 82, 50 85 C37 82, 25 72, 25 55 C25 30, 50 15, 50 15 Z"
+        fill="#4a8c5c" opacity="0.9"/>
+
+  <!-- Leaf vein -->
+  <path d="M50 18 Q52 50 50 84" stroke="#c8e6c9" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M50 40 Q60 45 68 42" stroke="#c8e6c9" stroke-width="1" fill="none" opacity="0.5"/>
+  <path d="M50 52 Q60 57 66 55" stroke="#c8e6c9" stroke-width="1" fill="none" opacity="0.5"/>
+  <path d="M50 40 Q40 45 32 42" stroke="#c8e6c9" stroke-width="1" fill="none" opacity="0.5"/>
+  <path d="M50 52 Q40 57 34 55" stroke="#c8e6c9" stroke-width="1" fill="none" opacity="0.5"/>
+
+  <!-- Gold dot accent at top -->
+  <circle cx="50" cy="20" r="3" fill="#c8963c" opacity="0.9"/>
+</svg>
